@@ -13,7 +13,7 @@ pipeline {
     stages{
         stage('Build app'){
             steps{
-                sh 'echo Performing Maven Build: ${ARTIFACT_ID}'
+                sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
             }
         }
 
