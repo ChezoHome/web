@@ -12,8 +12,17 @@ pipeline {
 
     stages{
         stage('Build app'){
+
+        agent{
+            docker{
+                image "openjdk:17"
+                reuseNode true
+            }
+        }
+
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
+                sh './mvn -DjarName=${JAR_NAME} clean verify'
             }
         }
 
