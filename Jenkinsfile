@@ -5,7 +5,7 @@ pipeline {
     environment{
         GITHUB_ORG = 'ChezoHome'
         CONTAINER_REGISTRY = "ghcr.io/${GITHUB_ORG}/"
-        ARTIFACT_ID = readMavenPom().getArtifactId()"
+        ARTIFACT_ID = readMavenPom().getArtifactId()
         JAR_NAME = "${ARTIFACT_ID}-${BUILD_NUMBER}"
         IMAGE_NAME = "${CONTAINER_REGISTRY}${ARTIFACT_ID}"
     }
