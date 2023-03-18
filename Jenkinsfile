@@ -14,15 +14,13 @@ pipeline {
         stage('Build app'){
         agent{
             docker{
-                image "openjdk:17"
+                image "maven:amazoncorretto-17-alpine"
                 reuseNode true
             }
         }
 
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
-                sh 'apt install maven'
-                sh 'mvn wrapper:wrapper'
                 sh './mvn -DjarName=${JAR_NAME} clean verify'
             }
         }
