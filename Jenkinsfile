@@ -24,6 +24,8 @@ pipeline {
 
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
+                sh 'apt-get install maven -y'
+                sh 'mvn wrapper:wrapper'
                 sh './mvn DjarName=service clean verify'
             }
         }
