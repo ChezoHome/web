@@ -1,3 +1,9 @@
 FROM arm64v8/amazoncorretto:17
-ADD . .
-CMD java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
+WORKDIR /app
+
+ARG JAR_FILE
+CMD ${JAR_FILE} app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","/app/app.jar"]
