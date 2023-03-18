@@ -4,9 +4,12 @@ pipeline {
     environment{
         GITHUB_ORG = 'ChezoHome'
         CONTAINER_REGISTRY = "ghcr.io/${GITHUB_ORG}/"
-        ARTIFACT_ID = "readMavenPom().getArtifactId()"
-        JAR_NAME = "${ARTIFACT_ID}-${BUILD_NUMBER}"
+        CONTAINER_REGISTRY_URL="https://${CONTAINER_REGISTRY}"
+        ARTIFACT_ID = readMavenPom().getArtifactId()
+        JAR_NAME = ${ARTIFACT_ID}-${BUILD_NUMBER}
+        JAR_LOCATION="target/${JAR_NAME}.jar"
         IMAGE_NAME = "${CONTAINER_REGISTRY}${ARTIFACT_ID}"
+        IMAGE_TAG="${IMAGE_NAME}:${BUILD_NUMBER}"
     }
 
     stages{
@@ -21,19 +24,26 @@ pipeline {
 
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
-                sh './mvn clean verify'
+                sh './mvn DjarName=service clean verify'
             }
         }
 
         stage('Build container'){
             steps{
                sh 'echo Building Container Image: ${IMAGE_NAME}'
+               sh 'sh docker build --build-arg JAR_FILE=${JAR_LOCATION} -t ${IMAGE_TAG} .'
             }
         }
 
         stage('Publish image'){
             steps{
                 sh 'echo Publishing container image to: ${CONTAINER_REGISTRY}'
+
+                script{
+                    docker.withRegistry("${CONTAINER_REGISTRY_URL}","github-pat"){
+                        sh 'docker push ${IMAGE_TAG}'
+                    }
+                }
             }
         }
     }
