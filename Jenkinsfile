@@ -22,6 +22,7 @@ pipeline {
 
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
+                sh 'mvn clean install'
                 sh './mvn -DjarName=${JAR_NAME} clean verify'
             }
         }
