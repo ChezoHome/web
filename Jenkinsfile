@@ -23,12 +23,12 @@ pipeline {
         }
 
             steps{
-                sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
+                sh 'echo Performing Gradle Build : ${ARTIFACT_ID}'
                 sh 'pwd'
                 sh 'ls -al'
                 sh 'chmod +x gradlew'
                 sh './gradlew clean'
-                sh './gradlew bootJar'
+                sh './gradlew bootJar -PappName="${JAR_NAME}"'
             }
         }
 
