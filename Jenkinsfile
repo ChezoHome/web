@@ -2,8 +2,8 @@ pipeline {
 
     agent any
     tools {
-        maven 'MAVEN_HOME'
-        jdk 'JAVA_HOME'
+         maven 'Maven 3.3.9'
+         jdk 'jdk17'
     }
     environment{
         GITHUB_ORG = 'ChezoHome'
@@ -14,8 +14,17 @@ pipeline {
     }
 
     stages{
-        stage('Build app'){
 
+        stage ('Initialize') {
+                steps {
+                    sh '''
+                        echo "PATH = ${PATH}"
+                        echo "M2_HOME = ${M2_HOME}"
+                    '''
+                }
+            }
+
+        stage('Build app'){
         agent{
             docker{
                 image "openjdk:17"
