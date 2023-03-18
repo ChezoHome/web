@@ -49,7 +49,7 @@ pipeline {
 
                 script{
                     docker.withRegistry("${CONTAINER_REGISTRY_URL}","github-pat"){
-                        sh 'docker push ${IMAGE_TAG}'
+                        sh 'docker push ghcr.io/chezohome/web'
                     }
                 }
             }
