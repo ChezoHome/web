@@ -14,7 +14,7 @@ pipeline {
         stage('Build app'){
         agent{
             docker{
-                image "maven:amazoncorretto-17"
+                image "maven"
                 reuseNode true
             }
         }
