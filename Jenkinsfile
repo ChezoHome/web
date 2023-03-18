@@ -1,10 +1,6 @@
 pipeline {
 
     agent any
-    tools {
-         maven 'Maven 3.3.9'
-         jdk 'jdk17'
-    }
     environment{
         GITHUB_ORG = 'ChezoHome'
         CONTAINER_REGISTRY = "ghcr.io/${GITHUB_ORG}/"
@@ -14,15 +10,6 @@ pipeline {
     }
 
     stages{
-
-        stage ('Initialize') {
-                steps {
-                    sh '''
-                        echo "PATH = ${PATH}"
-                        echo "M2_HOME = ${M2_HOME}"
-                    '''
-                }
-            }
 
         stage('Build app'){
         agent{
