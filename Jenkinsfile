@@ -24,8 +24,8 @@ pipeline {
 
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
-                sh 'sh pwd'
-                sh 'sh ls'
+                sh 'pwd'
+                sh 'ls'
                 sh './mvn DjarName=service clean verify'
             }
         }
