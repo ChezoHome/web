@@ -26,7 +26,6 @@ pipeline {
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
                 sh 'pwd'
                 sh 'ls -al'
-                sh 'mvn -N io.takari:maven:wrapper'
                 sh './mvn DjarName=service clean verify'
             }
         }
