@@ -5,7 +5,7 @@ pipeline {
         GITHUB_ORG = 'ChezoHome'
         CONTAINER_REGISTRY = "ghcr.io/${GITHUB_ORG}/"
         CONTAINER_REGISTRY_URL="https://${CONTAINER_REGISTRY}"
-        ARTIFACT_ID = "${POM_ARTIFACTID}"
+        ARTIFACT_ID = "test"
         JAR_NAME = "${ARTIFACT_ID}-${BUILD_NUMBER}"
         JAR_LOCATION="target/${JAR_NAME}.jar"
         IMAGE_NAME = "${CONTAINER_REGISTRY}${ARTIFACT_ID}"
