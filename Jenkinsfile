@@ -1,7 +1,10 @@
 pipeline {
 
     agent any
-
+    tools {
+        maven 'MAVEN_HOME'
+        jdk 'JAVA_HOME'
+    }
     environment{
         GITHUB_ORG = 'ChezoHome'
         CONTAINER_REGISTRY = "ghcr.io/${GITHUB_ORG}/"
@@ -22,7 +25,6 @@ pipeline {
 
             steps{
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
-                sh 'mvn clean install'
                 sh './mvn -DjarName=${JAR_NAME} clean verify'
             }
         }
