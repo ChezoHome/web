@@ -35,7 +35,10 @@ pipeline {
         stage('Build container'){
             steps{
                sh 'echo Building Container Image: ${IMAGE_NAME}'
-               sh 'sh docker build --build-arg JAR_FILE=${JAR_LOCATION} -t ${IMAGE_TAG} .'
+               sh 'cd JAR_LOCATION'
+               sh 'pwd'
+               sh 'ls -al'
+               sh 'sh docker build -t ${IMAGE_TAG} .'
             }
         }
 
