@@ -14,7 +14,7 @@ pipeline {
         stage('Build app'){
         agent{
             docker{
-                image "openjdk:17"
+                image "arm64v8/amazoncorretto:17"
                 reuseNode true
             }
         }
