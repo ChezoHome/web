@@ -38,7 +38,7 @@ pipeline {
                   dir('build/libs/'){
                      sh 'pwd'
                      sh 'ls -al'
-                     sh 'docker build -t ghcr.io/ChezoHome/web .'
+                     sh 'docker build -t ghcr.io/chezohome/web .'
                   }
             }
         }
