@@ -26,6 +26,7 @@ pipeline {
                 sh 'echo Performing Maven Build : ${ARTIFACT_ID}'
                 sh 'pwd'
                 sh 'ls -al'
+                sh 'chmod +x gradlew'
                 sh './gradlew clean'
             }
         }
