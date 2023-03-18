@@ -7,7 +7,7 @@ pipeline {
         CONTAINER_REGISTRY_URL="https://${CONTAINER_REGISTRY}"
         ARTIFACT_ID = "web"
         JAR_NAME = "${ARTIFACT_ID}-${BUILD_NUMBER}"
-        JAR_LOCATION="target/${JAR_NAME}.jar"
+        JAR_LOCATION="build/libs/${JAR_NAME}.jar"
         IMAGE_NAME = "${CONTAINER_REGISTRY}${ARTIFACT_ID}"
         IMAGE_TAG="${IMAGE_NAME}:${BUILD_NUMBER}"
     }
@@ -28,6 +28,7 @@ pipeline {
                 sh 'ls -al'
                 sh 'chmod +x gradlew'
                 sh './gradlew clean'
+                sh './gradlew bootJar'
             }
         }
 
