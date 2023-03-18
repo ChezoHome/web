@@ -23,5 +23,5 @@ tasks.named('test') {
 }
 
 bootJar {
-    archiveName = "${appName}"
+    archiveFileName = "${appName}"
 }
