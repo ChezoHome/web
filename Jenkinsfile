@@ -35,11 +35,11 @@ pipeline {
         stage('Build container'){
             steps{
                sh 'echo Building Container Image: ${IMAGE_NAME}'
-                  dir('build/libs/'){
+
                      sh 'pwd'
                      sh 'ls -al'
                      sh 'docker build --build-arg JAR_FILE=build/libs/web-0.0.1-SNAPSHOT.jar -t ghcr.io/chezohome/web .'
-                  }
+
             }
         }
 
