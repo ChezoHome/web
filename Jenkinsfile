@@ -35,10 +35,11 @@ pipeline {
         stage('Build container'){
             steps{
                sh 'echo Building Container Image: ${IMAGE_NAME}'
-               sh 'cd build/libs/'
-               sh 'pwd'
-               sh 'ls -al'
-               sh 'sh docker build -t ${IMAGE_TAG} .'
+                  dir('build/libs/'){
+                     sh 'pwd'
+                     sh 'ls -al'
+                     sh 'sh docker build -t ${IMAGE_TAG} .'
+                  }
             }
         }
 
