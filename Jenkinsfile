@@ -38,7 +38,7 @@ pipeline {
                   dir('build/libs/'){
                      sh 'pwd'
                      sh 'ls -al'
-                     sh 'sh docker build -t ${IMAGE_TAG} .'
+                     sh 'docker build -t ${IMAGE_TAG} .'
                   }
             }
         }
