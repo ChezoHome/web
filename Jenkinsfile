@@ -37,7 +37,7 @@ pipeline {
 
                      sh 'pwd'
                      sh 'ls -al'
-                     sh 'docker build --build-arg JAR_FILE=build/libs/web-0.0.1-SNAPSHOT.jar -t ghcr.io/chezohome/web .'
+                     sh 'docker build --build-arg JAR_FILE=${JAR_LOCATION} -t ghcr.io/chezohome/web .'
 
             }
         }
