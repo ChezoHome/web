@@ -5,9 +5,9 @@ pipeline {
         GITHUB_ORG = 'ChezoHome'
         CONTAINER_REGISTRY = "ghcr.io/${GITHUB_ORG}/"
         CONTAINER_REGISTRY_URL="https://${CONTAINER_REGISTRY}"
-        ARTIFACT_ID = "web-0.0.1-SNAPSHOT"
-        JAR_NAME = "${ARTIFACT_ID}"//-${BUILD_NUMBER}
-        JAR_LOCATION="build/libs/${JAR_NAME}.jar"
+        ARTIFACT_ID = "main"
+        JAR_NAME = "${ARTIFACT_ID}-${BUILD_NUMBER}.jar"
+        JAR_LOCATION="build/libs/${JAR_NAME}"
         IMAGE_NAME = "${CONTAINER_REGISTRY}${ARTIFACT_ID}"
         IMAGE_TAG="${IMAGE_NAME}:${BUILD_NUMBER}"
     }
@@ -27,8 +27,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -al'
                 sh 'chmod +x gradlew'
-                sh './gradlew clean'
-                sh './gradlew bootJar'
+                sh './gradlew -PjarName="main.jar" bootJar'
             }
         }
 
